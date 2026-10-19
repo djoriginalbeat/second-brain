@@ -15,6 +15,24 @@ O meu notebook foi alimentado com **19 fontes**. Eu confio nelas porque:
 * São artigos e textos que trazem a base conceitual da filosofia aristotélica de forma séria e com rigor histórico.
 * São vídeos e materiais didáticos que explicam conceitos complexos (como lógica, metafísica, ética e biologia) de forma clara e verificável.
 
+O Legado e as Ideias de Aristóteles
+
+fontes : 
+https://www.youtube.com/watch?v=dA__d_HoXXs
+https://www.youtube.com/watch?v=rql6REsj7dk
+https://www.youtube.com/watch?v=ORNvHnD2U1Y
+https://www.youtube.com/watch?v=skplwvo0pHo
+
+fonte texto : 
+https://filosofianaescola.com/filosofos/aristoteles-vida-principais-livros
+
+https://www.todamateria.com.br/aristoteles/
+
+https://www.casadosaber.com.br/autores/aristoteles
+
+https://www.brasilparalelo.com.br/artigos/quem-foi-aristoteles
+
+
 ---
 
 ## ⚙️ Diretriz de Comportamento
