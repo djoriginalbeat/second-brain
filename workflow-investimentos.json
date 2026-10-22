@@ -1,0 +1,139 @@
+{
+  "name": "Assistente de Investimento com IA - MVP",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "assistente-investimento",
+        "options": {}
+      },
+      "id": "e2a1b1c1-1111-2222-3333-444455556666",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 200]
+    },
+    {
+      "parameters": {
+        "url": "https://google.com",
+        "options": {}
+      },
+      "id": "e2a1b1c2-1111-2222-3333-444455556666",
+      "name": "HTTP Request Colab",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [300, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  item.json.processado = true;\n  item.json.insights = \"Análise realizada pelos agentes de IA\";\n}\nreturn $input.all();"
+      },
+      "id": "e2a1b1c3-1111-2222-3333-444455556666",
+      "name": "Code Integração Agentes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [500, 100]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "mergeByPosition",
+        "options": {}
+      },
+      "id": "e2a1b1c4-1111-2222-3333-444455556666",
+      "name": "Merge Fluxo MVP",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [700, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  item.json.emailCorpo = \"Prezado Investidor, aqui está seu briefing de IA personalizado.\";\n}\nreturn $input.all();"
+      },
+      "id": "e2a1b1c5-1111-2222-3333-444455556666",
+      "name": "Briefing Email LLM",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 200]
+    },
+    {
+      "parameters": {
+        "sendTo": "investidor@exemplo.com",
+        "subject": "Seu Briefing de Investimentos IA",
+        "message": "={{ $json.emailCorpo }}",
+        "options": {}
+      },
+      "id": "e2a1b1c6-1111-2222-3333-444455556666",
+      "name": "Gmail Envio Final",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [1100, 200]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request Colab",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request Colab": {
+      "main": [
+        [
+          {
+            "node": "Code Integração Agentes",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge Fluxo MVP",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Code Integração Agentes": {
+      "main": [
+        [
+          {
+            "node": "Merge Fluxo MVP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Fluxo MVP": {
+      "main": [
+        [
+          {
+            "node": "Briefing Email LLM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Briefing Email LLM": {
+      "main": [
+        [
+          {
+            "node": "Gmail Envio Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null,
+  "meta": null,
+  "pinData": {}
+}
